@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware' => ['api']],function(){
+    Route::post('/auth/token','Sanna\SannaController@create');
+    Route::post('/prescription/create','Sanna\SannaController@store');
+    Route::post('/prescription/error','Sanna\SannaController@show');
+});
